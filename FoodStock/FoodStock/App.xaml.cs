@@ -4,6 +4,8 @@ using FoodStock.ViewModels;
 using FoodStock.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using FoodStock.Services;
+using FoodStock.Models;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace FoodStock
@@ -23,13 +25,15 @@ namespace FoodStock
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            await NavigationService.NavigateAsync("NavigationPage/FoodListPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterSingleton<IRepository<FoodItem, long>, FoodItemReader>();
+
             containerRegistry.RegisterForNavigation<NavigationPage>();
-            containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<FoodListPage, FoodListPageViewModel>();
         }
     }
 }
