@@ -4,13 +4,14 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="FoodStock.Views.FoodListPage"
+             xmlns:model="clr-namespace:FoodStock.Models"
              Title="{Binding Title}">
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Visual="Material">
         <CollectionView ItemsSource="{Binding SampleItems}"
                         SelectionMode="Single"
                         SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="model:FoodItem">
                     <Grid Padding="10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
