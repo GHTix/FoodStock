@@ -34,6 +34,7 @@ namespace FoodStock
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<FoodListPage, FoodListPageViewModel>();
+            containerRegistry.RegisterForNavigation<FoodItemPage, FoodItemPageViewModel>();
         }
     }
 }

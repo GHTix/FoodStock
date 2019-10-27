@@ -2,9 +2,9 @@
 
 namespace FoodStock.Views
 {
-    public partial class FoodListPage : ContentPage
+    public partial class FoodItemPage : ContentPage
     {
-        public FoodListPage()  
+        public FoodItemPage()
         {
             InitializeComponent();
         }

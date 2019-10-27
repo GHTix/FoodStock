@@ -4,15 +4,35 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="FoodStock.Views.FoodListPage"
+             x:Name="foodListPage"
              xmlns:model="clr-namespace:FoodStock.Models"
              Title="{Binding Title}">
-    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Visual="Material">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="DarkButtonBackground">#000000</Color>
+            <Style x:Key="FloatingActionButtonStyle" TargetType="Button">
+                <Setter Property="CornerRadius" Value="100"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkButtonBackground}"/>
+                <Setter Property="HeightRequest" Value="55"/>
+                <Setter Property="WidthRequest" Value="55"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="Padding" Value="15"/>
+                <Setter Property="Margin" Value="0,0,20,10"/>
+                <Setter Property="Opacity" Value="0.7"/>
+                <Setter Property="TextColor" Value="White"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>    
+    <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Visual="Material">
         <CollectionView ItemsSource="{Binding SampleItems}"
                         SelectionMode="Single"
-                        SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                        SelectedItem="{Binding SelectedItem, Mode=TwoWay}"      
+                        SelectionChangedCommand = "{Binding SelectedItemCommand, Mode=TwoWay}"
+                        >
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:FoodItem">
-                    <Grid Padding="10">
+                    <Grid Padding="14">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -24,12 +44,17 @@
                         <BoxView Grid.Column="0" Grid.RowSpan="2" BackgroundColor="LightBlue"/>
                         <Label Grid.Column="1" Grid.Row="0"  Text="{Binding Name}"/>
                         <Label Grid.Column="1" Grid.Row="1"  Text="{Binding UseByDate}"/>
-                        
+
                     </Grid>
-                    
+
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-
         </CollectionView>
-    </StackLayout>
+        <Button AbsoluteLayout.LayoutFlags="PositionProportional"
+                AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize"
+                Style="{StaticResource FloatingActionButtonStyle}"
+                Text="+"
+                Command="{Binding AddItemCommand}">
+        </Button>
+    </AbsoluteLayout>
 </ContentPage>

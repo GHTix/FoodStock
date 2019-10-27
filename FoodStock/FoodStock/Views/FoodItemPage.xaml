@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="FoodStock.Views.FoodItemPage"
+             xmlns:model="clr-namespace:FoodStock.Models"
+             Title="{Binding Title}"
+             >
+    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Visual="Material" BindingContext="{Binding Item}" >
+        <Entry Placeholder="Nom" Text="{Binding Name, Mode=TwoWay}" />
+        <DatePicker Format="D" Date="{Binding UseByDate, Mode=TwoWay}" />
+    </StackLayout>
+</ContentPage>
