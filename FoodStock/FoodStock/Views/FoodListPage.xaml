@@ -25,7 +25,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>    
     <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Visual="Material">
-        <CollectionView ItemsSource="{Binding SampleItems}"
+        <CollectionView ItemsSource="{Binding Items}"
                         SelectionMode="Single"
                         SelectedItem="{Binding SelectedItem, Mode=TwoWay}"      
                         SelectionChangedCommand = "{Binding SelectedItemCommand, Mode=TwoWay}"

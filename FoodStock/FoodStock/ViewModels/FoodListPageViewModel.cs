@@ -18,7 +18,7 @@ namespace FoodStock.ViewModels
         protected INavigationService _navigationService;
         protected ObservableCollection<FoodItem> _items;
 
-        public ObservableCollection<FoodItem> SampleItems { get => _items; set => SetProperty(ref _items, value); }
+        public ObservableCollection<FoodItem> Items { get => _items; set => SetProperty(ref _items, value); }
 
         public FoodItem SelectedItem { get; set; }
         public DelegateCommand AddItemCommand { get; }
@@ -36,11 +36,16 @@ namespace FoodStock.ViewModels
             AddItemCommand = new DelegateCommand(OnAddItem);
             SelectedItemCommand = new DelegateCommand(OnSelectedItem);
 
-            _items = new ObservableCollection<FoodItem>(_repository.GetItems());
+            Items = new ObservableCollection<FoodItem>(_repository.GetItems());
 
            
         }
 
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            Items = new ObservableCollection<FoodItem>(_repository.GetItems());
+            base.OnNavigatedTo(parameters);
+        }
 
         public async void OnAddItem()
         {
