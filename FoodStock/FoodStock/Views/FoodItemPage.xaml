@@ -7,8 +7,11 @@
              xmlns:model="clr-namespace:FoodStock.Models"
              Title="{Binding Title}"
              >
-    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Visual="Material" BindingContext="{Binding Item}" >
-        <Entry Placeholder="Nom" Text="{Binding Name, Mode=TwoWay}" />
-        <DatePicker Format="D" Date="{Binding UseByDate, Mode=TwoWay}" />
+    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Visual="Material"  >
+        <Entry Placeholder="Nom" Text="{Binding Item.Name, Mode=TwoWay}" />
+        <DatePicker Format="D" Date="{Binding Item.PurchasedDate, Mode=TwoWay}" />
+        <DatePicker Format="D" Date="{Binding Item.UseByDate, Mode=TwoWay}"  />
+        <Button Text="Remove"  Command="{Binding RemoveItemCommand}"/>
+        <Button Text="Add New"  Command="{Binding AddNewItemCommand}"/>
     </StackLayout>
 </ContentPage>

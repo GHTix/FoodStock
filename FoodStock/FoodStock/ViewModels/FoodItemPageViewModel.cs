@@ -13,10 +13,13 @@ namespace FoodStock.ViewModels
     {
         protected IRepository<FoodItem, long> _repository;
         protected INavigationService _navigationService;
+
         private FoodItem _item;
-        private bool _isModify = false;
 
         public FoodItem Item { get => _item; set => SetProperty(ref _item, value); }
+        public DelegateCommand RemoveItemCommand { get => new DelegateCommand(OnRemoveItem); }
+        public DelegateCommand AddNewItemCommand { get => new DelegateCommand(OnAddNewItem); }
+
 
         public FoodItemPageViewModel(INavigationService navigationService, IRepository<FoodItem, long> repository)
             : base(navigationService)
@@ -29,29 +32,35 @@ namespace FoodStock.ViewModels
 
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
-            _isModify = parameters.ContainsKey("item");
-            if (_isModify)
-            {
-                Title = "Modify Item";
-                Item = parameters.GetValue<FoodItem>("item");                
-            }
-            else
-            {
-                Title = "New Item";
-                Item = new FoodItem { Id = _repository.NewId };
-            }
+            Item = parameters.GetValue<FoodItem>("item");
         }
 
         public override void OnNavigatedFrom(INavigationParameters parameters)
         {
-            if (_isModify==false)
-            {
+            AddOrUpdateCurrentItem();
+        }
+
+        public async void OnRemoveItem()
+        {
+            _repository.DeleteItem(Item.Id);
+            await _navigationService.NavigateAsync("FoodListPage");
+        }
+
+        public async void OnAddNewItem()
+        {
+            AddOrUpdateCurrentItem();
+            var p = new NavigationParameters();
+            FoodItem item = new FoodItem { Id = 0, PurchasedDate = DateTime.UtcNow, UseByDate = DateTime.UtcNow };
+            p.Add("item", item);
+            await _navigationService.NavigateAsync("FoodItemPage", p);
+        }
+
+        public void AddOrUpdateCurrentItem()
+        {
+            if (Item.Id == 0)
                 _repository.AddItem(Item);
-            }
             else
-            {
                 _repository.UpdateItem(_item.Id, Item);
-            }
         }
     }
 }

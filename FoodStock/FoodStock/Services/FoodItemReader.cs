@@ -11,45 +11,45 @@ namespace FoodStock.Services
 
         List<FoodItem> _items;
 
+        static DateTime GetRandomDate(Random rnd,int minDays,int maxDays)
+        {
+            DateTime now = DateTime.UtcNow;
+            
+            TimeSpan ts = new TimeSpan(rnd.Next(minDays, maxDays), 0, 0, 0);
+            return now + ts;
+        }
+
+
         public FoodItemReader()
         {
+            Random rnd = new Random(DateTime.UtcNow.Millisecond);
             _items = new List<FoodItem>();
-            _items.Add(new FoodItem { Id = 1, Name = "One", Location = StorageLocation.Fridge, PurchasedDate = DateTime.UtcNow, UseByDate = DateTime.UtcNow });
-            _items.Add(new FoodItem { Id = 2, Name = "Two", Location = StorageLocation.Freezer, PurchasedDate = DateTime.UtcNow, UseByDate = DateTime.UtcNow });
-            _items.Add(new FoodItem { Id = 3, Name = "Three", Location = StorageLocation.Fridge, PurchasedDate = DateTime.UtcNow, UseByDate = DateTime.UtcNow });
-            _items.Add(new FoodItem { Id = 4, Name = "Four", Location = StorageLocation.Fridge, PurchasedDate = DateTime.UtcNow, UseByDate = DateTime.UtcNow });
-            _items.Add(new FoodItem { Id = 5, Name = "Five", Location = StorageLocation.Cabinet, PurchasedDate = DateTime.UtcNow, UseByDate = DateTime.UtcNow });
-            _items.Add(new FoodItem { Id = 6, Name = "Six", Location = StorageLocation.Fridge, PurchasedDate = DateTime.UtcNow, UseByDate = DateTime.UtcNow });
-            _items.Add(new FoodItem { Id = 7, Name = "Seven", Location = StorageLocation.Fridge, PurchasedDate = DateTime.UtcNow, UseByDate = DateTime.UtcNow });
-            _items.Add(new FoodItem { Id = 8, Name = "Eight", Location = StorageLocation.Cabinet, PurchasedDate = DateTime.UtcNow, UseByDate = DateTime.UtcNow });
+            _items.Add(new FoodItem { Id = 1, Name = "One", Location = StorageLocation.Fridge, PurchasedDate = GetRandomDate(rnd,-10,0), UseByDate = GetRandomDate(rnd, 2,30) });
+            _items.Add(new FoodItem { Id = 2, Name = "Two", Location = StorageLocation.Freezer, PurchasedDate = GetRandomDate(rnd, -10, 0), UseByDate = GetRandomDate(rnd, 2, 30) });
+            _items.Add(new FoodItem { Id = 3, Name = "Three", Location = StorageLocation.Fridge, PurchasedDate = GetRandomDate(rnd, -10, 0), UseByDate = GetRandomDate(rnd, 2, 30) });
+            //_items.Add(new FoodItem { Id = 4, Name = "Four", Location = StorageLocation.Fridge, PurchasedDate = GetRandomDate(rnd, -10, 0), UseByDate = GetRandomDate(rnd, 2, 30) });
+            //_items.Add(new FoodItem { Id = 5, Name = "Five", Location = StorageLocation.Cabinet, PurchasedDate = GetRandomDate(rnd, -10, 0), UseByDate = GetRandomDate(rnd, 2, 30) });
+            //_items.Add(new FoodItem { Id = 6, Name = "Six", Location = StorageLocation.Fridge, PurchasedDate = GetRandomDate(rnd, -10, 0), UseByDate = GetRandomDate(rnd, 2, 30) });
+            //_items.Add(new FoodItem { Id = 7, Name = "Seven", Location = StorageLocation.Fridge, PurchasedDate = GetRandomDate(rnd, -10, 0), UseByDate = GetRandomDate(rnd, 2, 30) });
+            //_items.Add(new FoodItem { Id = 8, Name = "Eight", Location = StorageLocation.Cabinet, PurchasedDate = GetRandomDate(rnd, -10, 0), UseByDate = GetRandomDate(rnd, 2, 30) });
         }
 
 
-        public long NewId
-        {
-            get
-            {
-                return _items.Max(x => x.Id) + 1;
-            }
-
-        }
 
         public void AddItem(FoodItem item)
         {
+            item.Id = _items.Max(x => x.Id) + 1;
             _items.Add(item);
-            //throw new NotImplementedException();
         }
 
         public void DeleteItem(long key)
         {
-            throw new NotImplementedException();
+            _items.Remove(GetItem(key));
         }
 
         public FoodItem GetItem(long key)
         {
             return _items.FirstOrDefault(x => x.Id == key);
-
-            //throw new NotImplementedException();
         }
 
         public IEnumerable<FoodItem> GetItems()
@@ -62,7 +62,6 @@ namespace FoodStock.Services
             var updatedItem = GetItem(key);
             updatedItem = item;
 
-            //throw new NotImplementedException();
         }
     }
 }

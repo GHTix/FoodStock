@@ -4,7 +4,6 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="FoodStock.Views.FoodListPage"
-             x:Name="foodListPage"
              xmlns:model="clr-namespace:FoodStock.Models"
              Title="{Binding Title}">
     <ContentPage.Resources>
@@ -12,7 +11,7 @@
             <Color x:Key="DarkButtonBackground">#000000</Color>
             <Style x:Key="FloatingActionButtonStyle" TargetType="Button">
                 <Setter Property="CornerRadius" Value="100"/>
-                <Setter Property="BackgroundColor" Value="{StaticResource DarkButtonBackground}"/>
+                
                 <Setter Property="HeightRequest" Value="55"/>
                 <Setter Property="WidthRequest" Value="55"/>
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
@@ -36,14 +35,16 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <BoxView Grid.Column="0" Grid.RowSpan="2" BackgroundColor="LightBlue"/>
+                        <BoxView Grid.Column="0" Grid.RowSpan="3" BackgroundColor="LightBlue"/>
                         <Label Grid.Column="1" Grid.Row="0"  Text="{Binding Name}"/>
-                        <Label Grid.Column="1" Grid.Row="1"  Text="{Binding UseByDate}"/>
+                        <Label Grid.Column="1" Grid.Row="1"  Text="{Binding PurchasedDate}"/>
+                        <Label Grid.Column="1" Grid.Row="2"  Text="{Binding UseByDate}"/>
 
                     </Grid>
 
@@ -53,8 +54,7 @@
         <Button AbsoluteLayout.LayoutFlags="PositionProportional"
                 AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize"
                 Style="{StaticResource FloatingActionButtonStyle}"
-                Text="+"
-                Command="{Binding AddItemCommand}">
-        </Button>
+                
+                Command="{Binding AddItemCommand}"  />
     </AbsoluteLayout>
 </ContentPage>
