@@ -34,6 +34,7 @@ namespace FoodStock.ViewModels
 
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
+           
             Items = new ObservableCollection<FoodItem>(_repository.GetItems().OrderBy(x => x.UseByDate));
         }
 
@@ -51,7 +52,7 @@ namespace FoodStock.ViewModels
         {
             var p = new NavigationParameters();
             FoodItem item = (isNew == true) ?
-                                    new FoodItem { Id = 0, PurchasedDate = DateTime.UtcNow, UseByDate = DateTime.UtcNow } :
+                                    new FoodItem { Id = 0, PurchasedDate = DateTime.UtcNow, UseByDate = null } :
                                     SelectedItem;
             p.Add("item", item);
             await _navigationService.NavigateAsync("FoodItemPage", p);

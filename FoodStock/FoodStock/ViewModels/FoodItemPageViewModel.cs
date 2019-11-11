@@ -42,17 +42,16 @@ namespace FoodStock.ViewModels
 
         public async void OnRemoveItem()
         {
+            
             _repository.DeleteItem(Item.Id);
-            await _navigationService.NavigateAsync("FoodListPage");
+            await _navigationService.GoBackToRootAsync();
+            //await _navigationService.NavigateAsync("FoodListPage");
         }
 
-        public async void OnAddNewItem()
+        public  void OnAddNewItem()
         {
-            AddOrUpdateCurrentItem();
-            var p = new NavigationParameters();
-            FoodItem item = new FoodItem { Id = 0, PurchasedDate = DateTime.UtcNow, UseByDate = DateTime.UtcNow };
-            p.Add("item", item);
-            await _navigationService.NavigateAsync("FoodItemPage", p);
+            AddOrUpdateCurrentItem();            
+            Item = new FoodItem { Id = 0, Name="",  PurchasedDate = DateTime.UtcNow, UseByDate = null };
         }
 
         public void AddOrUpdateCurrentItem()

@@ -11,7 +11,6 @@
             <Color x:Key="DarkButtonBackground">#000000</Color>
             <Style x:Key="FloatingActionButtonStyle" TargetType="Button">
                 <Setter Property="CornerRadius" Value="100"/>
-                
                 <Setter Property="HeightRequest" Value="55"/>
                 <Setter Property="WidthRequest" Value="55"/>
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
@@ -28,6 +27,9 @@
                         SelectionMode="Single"
                         SelectedItem="{Binding SelectedItem, Mode=TwoWay}"      
                         SelectionChangedCommand = "{Binding SelectedItemCommand, Mode=TwoWay}"
+                        EmptyView="No items to display"
+                        ItemSizingStrategy="MeasureFirstItem"
+                        x:Name="collectionView" 
                         >
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:FoodItem">
@@ -43,8 +45,8 @@
                         </Grid.ColumnDefinitions>
                         <BoxView Grid.Column="0" Grid.RowSpan="3" BackgroundColor="LightBlue"/>
                         <Label Grid.Column="1" Grid.Row="0"  Text="{Binding Name}"/>
-                        <Label Grid.Column="1" Grid.Row="1"  Text="{Binding PurchasedDate}"/>
-                        <Label Grid.Column="1" Grid.Row="2"  Text="{Binding UseByDate}"/>
+                        <Label Grid.Column="1" Grid.Row="1"  Text="{Binding PurchasedDate , StringFormat='{0:m}'}"/>
+                        <Label Grid.Column="1" Grid.Row="2"  Text="{Binding UseByDate , StringFormat='{0:D}'}"/>
 
                     </Grid>
 

@@ -8,10 +8,17 @@
              Title="{Binding Title}"
              >
     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Visual="Material"  >
-        <Entry Placeholder="Nom" Text="{Binding Item.Name, Mode=TwoWay}" />
-        <DatePicker Format="D" Date="{Binding Item.PurchasedDate, Mode=TwoWay}" />
-        <DatePicker Format="D" Date="{Binding Item.UseByDate, Mode=TwoWay}"  />
-        <Button Text="Remove"  Command="{Binding RemoveItemCommand}"/>
-        <Button Text="Add New"  Command="{Binding AddNewItemCommand}"/>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+            <!--<Label Text="{Binding Item.Id}"/>-->
+            <Entry  Placeholder="Nom" Text="{Binding Item.Name, Mode=TwoWay}" />
+            <Label Text="Date achat"/>
+            <DatePicker Format="D" Date="{Binding Item.PurchasedDate, Mode=TwoWay}" />
+            <Label Text="Date péremption"/>
+            <DatePicker Format="D" Date="{Binding Item.UseByDate, Mode=TwoWay}"  />
+        </StackLayout>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"  Margin="12">
+            <Button Text="Remove"  Command="{Binding RemoveItemCommand}" BackgroundColor="#7F2727"/>
+            <Button Text="Add New"  Command="{Binding AddNewItemCommand}"/>
+        </StackLayout>
     </StackLayout>
 </ContentPage>

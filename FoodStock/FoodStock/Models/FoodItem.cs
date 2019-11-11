@@ -16,8 +16,8 @@ namespace FoodStock.Models
     {
         public long Id { get; set; }
         public string Name { get; set; }
-        public DateTime PurchasedDate { get; set; }
-        public DateTime UseByDate { get; set; }
+        public DateTime? PurchasedDate { get; set; }
+        public DateTime? UseByDate { get; set; }
         public StorageLocation Location { get; set; }
     }
 }
