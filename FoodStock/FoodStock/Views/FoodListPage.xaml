@@ -9,17 +9,18 @@
              Title="{Binding Title}">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Color x:Key="DarkButtonBackground">#000000</Color>
+            <Color x:Key="DarkButtonBackground">#CCCCCC</Color>
             <Style x:Key="FloatingActionButtonStyle" TargetType="Button">
                 <Setter Property="CornerRadius" Value="100"/>
-                <Setter Property="HeightRequest" Value="55"/>
-                <Setter Property="WidthRequest" Value="55"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="WidthRequest" Value="50"/>
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
                 <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
                 <Setter Property="Padding" Value="15"/>
                 <Setter Property="Margin" Value="0,0,20,10"/>
-                <Setter Property="Opacity" Value="0.7"/>
+                <Setter Property="Opacity" Value="1"/>
                 <Setter Property="TextColor" Value="White"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkButtonBackground}"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>    
@@ -56,10 +57,10 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <Button AbsoluteLayout.LayoutFlags="PositionProportional"
+        <Button  AbsoluteLayout.LayoutFlags="PositionProportional"
                 AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize"
                 Style="{StaticResource FloatingActionButtonStyle}"
-                
+                ImageSource="ic_add_circle_outline_black_36dp.png"
                 Command="{Binding AddItemCommand}"  />
     </AbsoluteLayout>
 </ContentPage>
