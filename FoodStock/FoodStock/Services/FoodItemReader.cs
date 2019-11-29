@@ -24,11 +24,11 @@ namespace FoodStock.Services
         {
             Random rnd = new Random(DateTime.UtcNow.Millisecond);
             _items = new List<FoodItem>();
-            //_items.Add(new FoodItem { Id = 1, Name = "One", Location = StorageLocation.Fridge, PurchasedDate = GetRandomDate(rnd,-10,0), UseByDate = GetRandomDate(rnd, 2,30) });
-            //_items.Add(new FoodItem { Id = 2, Name = "Two", Location = StorageLocation.Freezer, PurchasedDate = GetRandomDate(rnd, -10, 0), UseByDate = GetRandomDate(rnd, 2, 30) });
-            //_items.Add(new FoodItem { Id = 3, Name = "Three", Location = StorageLocation.Fridge, PurchasedDate = GetRandomDate(rnd, -10, 0), UseByDate = GetRandomDate(rnd, 2, 30) });
-            //_items.Add(new FoodItem { Id = 4, Name = "Four", Location = StorageLocation.Fridge, PurchasedDate = GetRandomDate(rnd, -10, 0), UseByDate = GetRandomDate(rnd, 2, 30) });
-            //_items.Add(new FoodItem { Id = 5, Name = "Five", Location = StorageLocation.Cabinet, PurchasedDate = GetRandomDate(rnd, -10, 0), UseByDate = GetRandomDate(rnd, 2, 30) });
+            _items.Add(new FoodItem { Id = 1, Name = "One", Location = StorageLocation.Fridge, PurchasedDate = GetRandomDate(rnd, -10, 0), UseByDate = GetRandomDate(rnd, 2, 30) });
+            _items.Add(new FoodItem { Id = 2, Name = "Two", Location = StorageLocation.Freezer, PurchasedDate = GetRandomDate(rnd, -10, 0), UseByDate = GetRandomDate(rnd, 2, 30) });
+            _items.Add(new FoodItem { Id = 3, Name = "Three", Location = StorageLocation.Fridge, PurchasedDate = GetRandomDate(rnd, -10, 0), UseByDate = GetRandomDate(rnd, 2, 30) });
+            _items.Add(new FoodItem { Id = 4, Name = "Four", Location = StorageLocation.Fridge, PurchasedDate = GetRandomDate(rnd, -10, 0), UseByDate = GetRandomDate(rnd, 2, 30) });
+            _items.Add(new FoodItem { Id = 5, Name = "Five", Location = StorageLocation.Cabinet, PurchasedDate = GetRandomDate(rnd, -10, 0), UseByDate = GetRandomDate(rnd, 2, 30) });
             //_items.Add(new FoodItem { Id = 6, Name = "Six", Location = StorageLocation.Fridge, PurchasedDate = GetRandomDate(rnd, -10, 0), UseByDate = GetRandomDate(rnd, 2, 30) });
             //_items.Add(new FoodItem { Id = 7, Name = "Seven", Location = StorageLocation.Fridge, PurchasedDate = GetRandomDate(rnd, -10, 0), UseByDate = GetRandomDate(rnd, 2, 30) });
             //_items.Add(new FoodItem { Id = 8, Name = "Eight", Location = StorageLocation.Cabinet, PurchasedDate = GetRandomDate(rnd, -10, 0), UseByDate = GetRandomDate(rnd, 2, 30) });

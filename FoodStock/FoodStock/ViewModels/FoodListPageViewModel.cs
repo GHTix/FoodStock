@@ -21,7 +21,7 @@ namespace FoodStock.ViewModels
         public ObservableCollection<FoodItem> Items { get => _items; set => SetProperty(ref _items, value); }
         public FoodItem SelectedItem { get; set; }
         public DelegateCommand AddItemCommand { get => new DelegateCommand(OnAddItem); }
-        public DelegateCommand SelectedItemCommand { get => new DelegateCommand(OnSelectedItem); }
+        public DelegateCommand<FoodItem> TapItemCommand { get => new DelegateCommand<FoodItem>(OnTappedItem); }
 
 
         public FoodListPageViewModel(INavigationService navigationService, IRepository<FoodItem, long> repository)
@@ -33,29 +33,26 @@ namespace FoodStock.ViewModels
         }
 
         public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-           
+        {           
             Items = new ObservableCollection<FoodItem>(_repository.GetItems().OrderBy(x => x.UseByDate));
         }
 
         public async void OnAddItem()
         {
-            await NavigateEditAsync(true);
+            await NavigateFoodItemPageAsync(new FoodItem { Id = 0, PurchasedDate = DateTime.UtcNow, UseByDate = null });
         }
 
-        public async void OnSelectedItem()
+        public async void OnTappedItem(FoodItem item)
         {
-            await NavigateEditAsync(false);
+            await NavigateFoodItemPageAsync(item);
         }
 
-        public async Task NavigateEditAsync(bool isNew)
+        public async Task NavigateFoodItemPageAsync(FoodItem item)
         {
             var p = new NavigationParameters();
-            FoodItem item = (isNew == true) ?
-                                    new FoodItem { Id = 0, PurchasedDate = DateTime.UtcNow, UseByDate = null } :
-                                    SelectedItem;
             p.Add("item", item);
             await _navigationService.NavigateAsync("FoodItemPage", p);
         }
+
     }
 }

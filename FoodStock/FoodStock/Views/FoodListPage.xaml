@@ -5,6 +5,7 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="FoodStock.Views.FoodListPage"
              xmlns:model="clr-namespace:FoodStock.Models"
+             xmlns:vm="clr-namespace:FoodStock.ViewModels"
              Title="{Binding Title}">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -24,16 +25,18 @@
     </ContentPage.Resources>    
     <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Visual="Material">
         <CollectionView ItemsSource="{Binding Items}"
-                        SelectionMode="Single"
-                        SelectedItem="{Binding SelectedItem, Mode=TwoWay}"      
-                        SelectionChangedCommand = "{Binding SelectedItemCommand, Mode=TwoWay}"
+                        SelectionMode="None"
                         EmptyView="No items to display"
-                        ItemSizingStrategy="MeasureFirstItem"
-                        x:Name="collectionView" 
+                        ItemSizingStrategy="MeasureFirstItem"                       
                         >
-            <CollectionView.ItemTemplate>
+                <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:FoodItem">
                     <Grid Padding="14">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding  Source={RelativeSource AncestorType={x:Type vm:FoodListPageViewModel}}, Path=TapItemCommand}" 
+                                CommandParameter="{Binding .}"  />
+                        </Grid.GestureRecognizers>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
